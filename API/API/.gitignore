@@ -11,3 +11,4 @@ obj
 *.orig
 *.build.csdef
 *.sln.DotSettings
+appsettings.Development.json
