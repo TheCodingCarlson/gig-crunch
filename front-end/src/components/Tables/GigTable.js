@@ -1,6 +1,6 @@
 import React from 'react';
 import TableHeader from './TableHeader';
-import { getGigBand } from '../../helpers';
+import { getBandName} from '../../helpers';
 
 const GigTable = ({ gigs, bands, headers }) => {
   return (
@@ -8,11 +8,11 @@ const GigTable = ({ gigs, bands, headers }) => {
       <TableHeader headers={headers} />
       <tbody>
         { gigs.map((gig, index) => {
-          let band = getGigBand(gig, bands) || '';
+          let bandName = getBandName(gig.bandCode, bands);
           return (
             <tr key={index}>
               <td>{gig.date}</td>
-              <td>{band.name}</td>
+              <td>{bandName}</td>
               <td>{gig.venue}</td>
               <td>{gig.city}</td>
               <td>{gig.state}</td>
