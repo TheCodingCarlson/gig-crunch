@@ -5,9 +5,11 @@ import Dropdown from './Dropdown';
 import Tab from './Tabs/Tab';
 import GigTable from './Tables/GigTable';
 import BandTable from './Tables/BandTable';
+import YearTable from './Tables/YearTable';
+import DataTable from './Tables/DataTable';
 
-import { API_ENDPOINT, GIG_TABLE_HEADERS, BAND_TABLE_HEADERS } from '../constants';
-import { findUniqueYears, filterGigs, groupGigsByBand } from '../helpers';
+import { API_ENDPOINT, GIG_TABLE_HEADERS, BAND_TABLE_HEADERS, YEAR_TABLE_HEADERS } from '../constants';
+import { findUniqueYears, filterGigs, groupGigsByBand, getBandName } from '../helpers';
 import TabPanel from './Tabs/TabPanel';
 
 class App extends React.Component {
@@ -44,22 +46,26 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios.get(`${API_ENDPOINT}/gigs/`)
-      .then(res => {
-        this.setState({
-          allGigs: res.data,
-          years: findUniqueYears(res.data)
-        });
+  async componentDidMount() {
+    const [gigsResponse, bandsResponse] = await Promise.all([
+      axios.get(`${API_ENDPOINT}/gigs/`),
+      axios.get(`${API_ENDPOINT}/bands/`)
+    ]);
 
-        this.setState({ selectedYear: this.state.years[0] });
-        this.setState({ filteredGigs: filterGigs(this.state.allGigs, this.state.selectedYear) });
-      })
-      .catch(err => console.log(err));
+    const gigsCopy = [ ...gigsResponse.data ];
 
-    axios.get(`${API_ENDPOINT}/bands/`)
-      .then(res => this.setState({ bands: res.data }))
-      .catch(err => console.log(err));
+    gigsCopy.forEach(gig => {
+      gig.bandName = getBandName(gig.bandCode, bandsResponse.data);
+    });
+
+    this.setState({
+      allGigs: gigsCopy,
+      years: findUniqueYears(gigsResponse.data),
+      bands: bandsResponse.data
+    });
+
+    this.setState({ selectedYear: this.state.years[0] });
+    this.setState({ filteredGigs: filterGigs(this.state.allGigs, this.state.selectedYear) });
   }
 
   handleYearChange(year) {
@@ -85,8 +91,7 @@ class App extends React.Component {
         return (
           <GigTable
             headers={GIG_TABLE_HEADERS}
-            gigs={this.state.filteredGigs}
-            bands={this.state.bands} />
+            gigs={this.state.filteredGigs} />
           );
       case this.state.tabs[1].id:
         return (
@@ -95,6 +100,18 @@ class App extends React.Component {
             groupedGigs={groupGigsByBand(this.state.filteredGigs)}
             bands={this.state.bands} />
         );
+      case this.state.tabs[2].id:
+        return (
+          <YearTable 
+            headers={YEAR_TABLE_HEADERS}
+            gigs={this.state.filteredGigs} />
+        );
+      case this.state.tabs[3].id:
+        return (
+          <DataTable
+            gigs={this.state.allGigs}
+            bands={this.state.bands} />
+        )
       default:
         return null;
     }
