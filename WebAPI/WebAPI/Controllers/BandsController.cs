@@ -47,10 +47,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBand(int id, Band band)
         {
-            if (id != band.Id)
-            {
-                return BadRequest();
-            }
+            band.Id = id;
 
             _context.Entry(band).State = EntityState.Modified;
 
