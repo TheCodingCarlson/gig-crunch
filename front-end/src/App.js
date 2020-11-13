@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-import Dropdown from './Dropdown';
-import Tab from './Tabs/Tab';
-import GigTable from './Tables/GigTable';
-import BandTable from './Tables/BandTable';
-import YearTable from './Tables/YearTable';
-import DataTable from './Tables/DataTable';
+import Dropdown from './components/Dropdown';
+import Tab from './components/Tabs/Tab';
+import GigTable from './components/Tables/GigTable';
+import BandTable from './components/Tables/BandTable';
+import YearTable from './components/Tables/YearTable';
+import DataTable from './components/Tables/DataTable';
 
-import { API_ENDPOINT, GIG_TABLE_HEADERS, BAND_TABLE_HEADERS, YEAR_TABLE_HEADERS } from '../constants';
-import { findUniqueYears, filterGigs, groupGigsByBand, getBandName } from '../helpers';
-import TabPanel from './Tabs/TabPanel';
+import { API_ENDPOINT, GIG_TABLE_HEADERS, BAND_TABLE_HEADERS, YEAR_TABLE_HEADERS } from './constants';
+import { findUniqueYears, filterGigs, groupGigsByBand, getBandName } from './helpers';
+import TabPanel from './components/Tabs/TabPanel';
 
 class App extends React.Component {
   constructor(props) {
