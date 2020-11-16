@@ -5,17 +5,17 @@ import { DATA_TABLE_HEADERS } from '../../constants';
 class DataTable extends React.Component {
   render() {
     const { gigs, bands } = { ...this.props };
-    const paidGigs = gigs.filter(gig => gig.pay).length;
-    const unpaidGigs = gigs.filter(gig => !gig.pay).length;
-    const totalCities = [ ...new Set(gigs.map(gig => gig.city)) ];
-    const totalStates = [ ...new Set(gigs.map(gig => gig.state)) ];
+    const paidGigs = gigs.filter((gig) => gig.pay).length;
+    const unpaidGigs = gigs.filter((gig) => !gig.pay).length;
+    const totalCities = [...new Set(gigs.map((gig) => gig.city))];
+    const totalStates = [...new Set(gigs.map((gig) => gig.state))];
     const totalPay = gigs.reduce((total, gig) => {
       let pay = gig.pay ? gig.pay : 0;
       return total + pay;
     }, 0);
 
     const averagePayPerGig = Math.round(totalPay / paidGigs).toString();
-  
+
     return (
       <table>
         <TableHeader headers={DATA_TABLE_HEADERS} />

@@ -9,15 +9,16 @@ class Tab extends React.Component {
   render() {
     const { text, id, isSelected } = { ...this.props };
     return (
-      <button 
+      <button
         className="tab"
         role="tab"
         aria-selected={isSelected}
         id={id}
-        onClick={(e) => this.handleClick(e)}>
-          {text}
+        onClick={(e) => this.handleClick(e)}
+      >
+        {text}
       </button>
-    )
+    );
   }
 }
 

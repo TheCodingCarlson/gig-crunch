@@ -1,14 +1,34 @@
-export const API_ENDPOINT = "https://localhost:44327/api";
-export const GIG_TABLE_HEADERS = ['Date', 'Band', 'Venue', 'City', 'State', 'Pay'];
-export const BAND_TABLE_HEADERS = ['Band', '# of Gigs', 'Total Pay', 'Average Pay Per Gig'];
-export const BAND_GIGS_TABLE_HEADERS = ['Date', 'Venue', 'City', 'State', 'Pay'];
+export const API_ENDPOINT = 'https://localhost:44327/api';
+export const GIG_TABLE_HEADERS = [
+  'Date',
+  'Band',
+  'Venue',
+  'City',
+  'State',
+  'Pay',
+];
+export const BAND_TABLE_HEADERS = [
+  'Band',
+  '# of Gigs',
+  'Total Pay',
+  'Average Pay Per Gig',
+];
+export const BAND_GIGS_TABLE_HEADERS = [
+  'Date',
+  'Venue',
+  'City',
+  'State',
+  'Pay',
+];
 
 export const YEAR_TABLE_HEADERS = [
-  'Total Gigs', 'Total Bands',
-  'Total Cities', 'Total States',
+  'Total Gigs',
+  'Total Bands',
+  'Total Cities',
+  'Total States',
   'Total Pay',
   'Most Popular Band',
-  'Highest Paying Gig'
+  'Highest Paying Gig',
 ];
 
 export const DATA_TABLE_HEADERS = [
@@ -19,5 +39,5 @@ export const DATA_TABLE_HEADERS = [
   'Total # of Cities',
   'Total # of States',
   'Total Pay',
-  'Average Pauy (paid gigs only)'
+  'Average Pauy (paid gigs only)',
 ];

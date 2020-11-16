@@ -6,7 +6,7 @@ const GigTable = ({ gigs, headers }) => {
     <table>
       <TableHeader headers={headers} />
       <tbody>
-        { gigs.map((gig, index) => {
+        {gigs.map((gig, index) => {
           return (
             <tr key={index}>
               <td>{gig.date}</td>
@@ -16,11 +16,11 @@ const GigTable = ({ gigs, headers }) => {
               <td>{gig.state}</td>
               <td>{gig.pay}</td>
             </tr>
-          )
+          );
         })}
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 export default GigTable;

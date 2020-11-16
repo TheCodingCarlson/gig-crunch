@@ -4,22 +4,22 @@
   display: grid;
 }
 
-[role="tablist"] {
+[role='tablist'] {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 10px;
 }
 
-[role="tabpanel"] {
+[role='tabpanel'] {
   background: $blue;
   padding: 2rem;
 }
 
 button.tab {
   border-radius: 5px 5px 0 0;
-  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.1);
 
-  &[aria-selected="true"] {
+  &[aria-selected='true'] {
     background: $blue;
     box-shadow: none;
     color: $grey;
@@ -27,6 +27,6 @@ button.tab {
 
   &:focus {
     outline: 0;
-    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.6);
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.6);
   }
 }
