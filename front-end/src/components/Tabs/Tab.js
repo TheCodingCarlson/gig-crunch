@@ -1,25 +1,22 @@
 import React from 'react';
 import './Tabs.scss';
 
-class Tab extends React.Component {
-  handleClick(e) {
-    this.props.onClick(e.target.id);
-  }
+const Tab = ({ text, id, isSelected, handleClick }) => {
+  const onTabClick = (e) => {
+    handleClick(e.target.id);
+  };
 
-  render() {
-    const { text, id, isSelected } = { ...this.props };
-    return (
-      <button
-        className="tab"
-        role="tab"
-        aria-selected={isSelected}
-        id={id}
-        onClick={(e) => this.handleClick(e)}
-      >
-        {text}
-      </button>
-    );
-  }
-}
+  return (
+    <button
+      className="tab"
+      role="tab"
+      aria-selected={isSelected}
+      id={id}
+      onClick={(e) => onTabClick(e)}
+    >
+      {text}
+    </button>
+  );
+};
 
 export default Tab;

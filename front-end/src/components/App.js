@@ -151,7 +151,7 @@ class App extends React.Component {
                   text={text}
                   id={id}
                   isSelected={isSelected}
-                  onClick={(e) => this.handleTabClick(e)}
+                  handleClick={(e) => this.handleTabClick(e)}
                 />
               );
             })}
