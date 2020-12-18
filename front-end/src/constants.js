@@ -41,3 +41,10 @@ export const DATA_TABLE_HEADERS = [
   'Total Pay',
   'Average Pauy (paid gigs only)',
 ];
+
+export const ACTION_TYPES = {
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
+  FETCH_ALL: 'FETCH_ALL',
+};
