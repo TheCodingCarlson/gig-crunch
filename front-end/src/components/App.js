@@ -1,13 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 
-import Dropdown from './Dropdown';
-import Tab from './Tabs/Tab';
-import TabPanel from './Tabs/TabPanel';
-import GigTable from './Tables/GigTable';
-import BandTable from './Tables/BandTable';
-import YearTable from './Tables/YearTable';
-import DataTable from './Tables/DataTable';
+import { store } from '../actions/store';
+import { Provider } from 'react-redux';
+
+import Dropdown from '../components/Dropdown';
+import Tab from '../components/Tabs/Tab';
+import TabPanel from '../components/Tabs/TabPanel';
+import GigTable from '../components/Tables/GigTable';
+import BandTable from '../components/Tables/BandTable';
+import YearTable from '../components/Tables/YearTable';
+import DataTable from '../components/Tables/DataTable';
+
+import GigForm from '../components/Forms/GigForm';
 
 import {
   API_ENDPOINT,
@@ -132,40 +137,44 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <h1>Gig Crunch</h1>
+      <Provider store={store}>
+        <div className="wrapper">
+          <h1>Gig Crunch</h1>
 
-        <Dropdown
-          options={this.state.years}
-          label={'Select Year'}
-          onChange={(e) => this.handleYearChange(e)}
-        />
+          <Dropdown
+            options={this.state.years}
+            label={'Select Year'}
+            onChange={(e) => this.handleYearChange(e)}
+          />
 
-        <div className="tabs">
-          <div role="tablist" aria-label="data-sets">
+          <div className="tabs">
+            <div role="tablist" aria-label="data-sets">
+              {this.state.tabs.map((tab) => {
+                let { id, text, isSelected } = { ...tab };
+                return (
+                  <Tab
+                    key={id}
+                    text={text}
+                    id={id}
+                    isSelected={isSelected}
+                    handleClick={(e) => this.handleTabClick(e)}
+                  />
+                );
+              })}
+            </div>
             {this.state.tabs.map((tab) => {
-              let { id, text, isSelected } = { ...tab };
+              let { id, isSelected } = { ...tab };
               return (
-                <Tab
-                  key={id}
-                  text={text}
-                  id={id}
-                  isSelected={isSelected}
-                  handleClick={(e) => this.handleTabClick(e)}
-                />
+                <TabPanel key={id} id={id} isActive={isSelected}>
+                  {this.handleTableRender(id)}
+                </TabPanel>
               );
             })}
           </div>
-          {this.state.tabs.map((tab) => {
-            let { id, isSelected } = { ...tab };
-            return (
-              <TabPanel key={id} id={id} isActive={isSelected}>
-                {this.handleTableRender(id)}
-              </TabPanel>
-            );
-          })}
+
+          <GigForm />
         </div>
-      </div>
+      </Provider>
     );
   }
 }
