@@ -3,6 +3,6 @@ import { gigsReducer } from './gigsReducer';
 import { bandsReducer } from './bandsReducer';
 
 export const reducers = combineReducers({
-  gigsReducer,
-  bandsReducer,
+  gigs: gigsReducer,
+  bands: bandsReducer,
 });

@@ -1,16 +1,9 @@
 import { ACTION_TYPES } from '../constants';
 
-const initialState = {
-  gigs: [],
-};
-
-export const gigsReducer = (state = initialState, action) => {
+export const gigsReducer = (state = [], action) => {
   switch (action.type) {
-    case ACTION_TYPES.FETCH_ALL:
-      return {
-        ...state,
-        gigs: [...action.payload],
-      };
+    case ACTION_TYPES.FETCH_ALL_GIGS:
+      return action.payload;
     default:
       return state;
   }

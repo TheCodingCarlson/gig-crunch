@@ -8,7 +8,7 @@ export const fetchGigs = () => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       dispatch({
-        type: ACTION_TYPES.FETCH_ALL,
+        type: ACTION_TYPES.FETCH_ALL_GIGS,
         payload: res.data,
       });
     })
@@ -21,7 +21,7 @@ export const fetchBands = () => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       dispatch({
-        type: ACTION_TYPES.FETCH_ALL,
+        type: ACTION_TYPES.FETCH_ALL_BANDS,
         payload: res.data,
       });
     })

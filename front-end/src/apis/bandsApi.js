@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://localhost:44327/api/bands';
+const baseUrl = 'https://localhost:44327/api/bands/';
 
 export const bandsApi = {
   fetchAll: () => axios.get(baseUrl),

@@ -1,16 +1,9 @@
 import { ACTION_TYPES } from '../constants';
 
-const initialState = {
-  bands: [],
-};
-
-export const bandsReducer = (state = initialState, action) => {
+export const bandsReducer = (state = [], action) => {
   switch (action.type) {
-    case ACTION_TYPES.FETCH_ALL:
-      return {
-        ...state,
-        bands: [...action.payload],
-      };
+    case ACTION_TYPES.FETCH_ALL_BANDS:
+      return action.payload;
     default:
       return state;
   }

@@ -4,15 +4,15 @@ import axios from 'axios';
 import { store } from '../actions/store';
 import { Provider } from 'react-redux';
 
-import Dropdown from '../components/Dropdown';
-import Tab from '../components/Tabs/Tab';
-import TabPanel from '../components/Tabs/TabPanel';
-import GigTable from '../components/Tables/GigTable';
-import BandTable from '../components/Tables/BandTable';
-import YearTable from '../components/Tables/YearTable';
-import DataTable from '../components/Tables/DataTable';
+import Dropdown from './Dropdown';
+import Tab from './Tabs/Tab';
+import TabPanel from './Tabs/TabPanel';
+import GigTable from './Tables/GigTable';
+import BandTable from './Tables/BandTable';
+import YearTable from './Tables/YearTable';
+import DataTable from './Tables/DataTable';
 
-import GigForm from '../components/Forms/GigForm';
+import GigForm from './Forms/GigForm';
 
 import {
   API_ENDPOINT,
