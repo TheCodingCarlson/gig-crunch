@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Grid, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class AppV2 extends React.Component {
-  componentDidMount() {
-    this.props.fetchGigs();
-    this.props.fetchBands();
-  }
+import GigTable from './Tables/GigTable';
+import GigForm from './Forms/GigForm';
 
-  renderList = () => {
-    return this.props.gigs.map((gig) => {
-      return <li key={gig.id}>{gig.venue}</li>;
-    });
-  };
+import { GIG_TABLE_HEADERS } from '../constants';
 
-  render() {
-    return (
-      <div className="wrapper">
-        <h1>Gig Crunch</h1>
-        {/* <ul>{this.renderList()}</ul> */}
-      </div>
-    );
-  }
-}
+const AppV2 = ({ fetchGigs, fetchBands, gigs, bands }) => {
+  const [currentGigId, setCurrentGigId] = useState(0);
+
+  useEffect(() => {
+    fetchGigs();
+    fetchBands();
+  }, [fetchGigs, fetchBands]);
+
+  return (
+    <Grid container padded>
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h1">Gig Crunch</Header>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <GigTable
+            headers={GIG_TABLE_HEADERS}
+            gigs={gigs}
+            bands={bands}
+            setCurrentGigId={setCurrentGigId}
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <GigForm
+            gigs={gigs}
+            bands={bands}
+            setCurrentGigId={setCurrentGigId}
+            currentGigId={currentGigId}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

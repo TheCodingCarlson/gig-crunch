@@ -1,26 +1,62 @@
 import React from 'react';
-import TableHeader from './TableHeader';
+import { Table, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import { getBandName } from '../../helpers';
 
-const GigTable = ({ gigs, headers }) => {
+const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
+  const handleDelete = (gig) => {
+    deleteGig(gig.id, () => {
+      console.log('Deleted Gig!');
+    });
+  };
+
   return (
-    <table>
-      <TableHeader headers={headers} />
-      <tbody>
-        {gigs.map((gig, index) => {
+    <Table celled>
+      <Table.Header>
+        <Table.Row>
+          {headers.map((header, index) => {
+            return <Table.HeaderCell key={index}>{header}</Table.HeaderCell>;
+          })}
+        </Table.Row>
+      </Table.Header>
+
+      <Table.Body>
+        {gigs.map((gig) => {
+          let bandName = getBandName(gig.bandCode, bands);
+
           return (
-            <tr key={index}>
-              <td>{gig.date}</td>
-              <td>{gig.bandName}</td>
-              <td>{gig.venue}</td>
-              <td>{gig.city}</td>
-              <td>{gig.state}</td>
-              <td>{gig.pay}</td>
-            </tr>
+            <Table.Row key={gig.id}>
+              <Table.Cell>{gig.date}</Table.Cell>
+              <Table.Cell>{bandName}</Table.Cell>
+              <Table.Cell>{gig.venue}</Table.Cell>
+              <Table.Cell>{gig.city}</Table.Cell>
+              <Table.Cell>{gig.state}</Table.Cell>
+              <Table.Cell>{gig.pay}</Table.Cell>
+              <Table.Cell>
+                <Button
+                  color="olive"
+                  onClick={() => {
+                    setCurrentGigId(gig.id);
+                  }}
+                  icon="edit"
+                />
+                <Button
+                  color="red"
+                  onClick={() => handleDelete(gig)}
+                  icon="trash"
+                />
+              </Table.Cell>
+            </Table.Row>
           );
         })}
-      </tbody>
-    </table>
+      </Table.Body>
+    </Table>
   );
 };
 
-export default GigTable;
+const mapDispatchToProps = {
+  deleteGig: actions.deleteGig,
+};
+
+export default connect(null, mapDispatchToProps)(GigTable);

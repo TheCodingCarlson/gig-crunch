@@ -9,7 +9,9 @@ import { reducers } from './reducers';
 import AppV2 from './components/AppV2';
 
 import * as serviceWorker from './serviceWorker';
-import './base.scss';
+
+import 'semantic-ui-css/semantic.min.css';
+// import './base.scss';
 
 const store = createStore(
   reducers,
@@ -20,11 +22,9 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <AppV2 />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <AppV2 />
+  </Provider>,
   document.getElementById('root')
 );
 
