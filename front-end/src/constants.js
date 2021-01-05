@@ -54,6 +54,8 @@ export const ACTION_TYPES = {
   UPDATE_BAND: 'UPDATE_BAND',
   DELETE_BAND: 'DELETE_BAND',
   FETCH_ALL_BANDS: 'FETCH_ALL_BANDS',
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
 };
 
 export const TABS = ['Gig Breakdown', 'Band Breakdown'];

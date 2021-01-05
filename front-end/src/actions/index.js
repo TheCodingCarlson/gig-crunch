@@ -76,3 +76,15 @@ export const fetchBands = () => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const openModal = () => (dispatch) => {
+  dispatch({
+    type: ACTION_TYPES.OPEN_MODAL,
+  });
+};
+
+export const closeModal = () => (dispatch) => {
+  dispatch({
+    type: ACTION_TYPES.CLOSE_MODAL,
+  });
+};

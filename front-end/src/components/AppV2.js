@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Header } from 'semantic-ui-react';
+import React, { useEffect } from 'react';
+import { Grid, Tab, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import GigTable from './Tables/GigTable';
-import GigForm from './Forms/GigForm';
+import Gigs from './Tabs/Gigs';
+import Bands from './Tabs/Bands';
 
-import { GIG_TABLE_HEADERS } from '../constants';
+const panes = [
+  {
+    menuItem: 'Gigs',
+    render: () => <Gigs />,
+  },
+  {
+    menuItem: 'Bands',
+    render: () => <Bands />,
+  },
+];
 
-const AppV2 = ({ fetchGigs, fetchBands, gigs, bands }) => {
-  const [currentGigId, setCurrentGigId] = useState(0);
-
+const AppV2 = ({ fetchGigs, fetchBands }) => {
   useEffect(() => {
     fetchGigs();
     fetchBands();
@@ -20,38 +27,12 @@ const AppV2 = ({ fetchGigs, fetchBands, gigs, bands }) => {
     <Grid container padded>
       <Grid.Row>
         <Grid.Column>
-          <Header as="h1">Gig Crunch</Header>
+          <Header as="h1" content="Gig Crunch" />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <GigTable
-            headers={GIG_TABLE_HEADERS}
-            gigs={gigs}
-            bands={bands}
-            setCurrentGigId={setCurrentGigId}
-          />
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <GigForm
-            gigs={gigs}
-            bands={bands}
-            setCurrentGigId={setCurrentGigId}
-            currentGigId={currentGigId}
-          />
-        </Grid.Column>
-      </Grid.Row>
+      <Tab panes={panes} />
     </Grid>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    gigs: state.gigs,
-    bands: state.bands,
-  };
 };
 
 const mapActionToProps = {
@@ -59,4 +40,4 @@ const mapActionToProps = {
   fetchBands: actions.fetchBands,
 };
 
-export default connect(mapStateToProps, mapActionToProps)(AppV2);
+export default connect(null, mapActionToProps)(AppV2);

@@ -40,11 +40,13 @@ const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
                     setCurrentGigId(gig.id);
                   }}
                   icon="edit"
+                  content="Update gig"
                 />
                 <Button
                   color="red"
                   onClick={() => handleDelete(gig)}
                   icon="trash"
+                  content="Delete gig"
                 />
               </Table.Cell>
             </Table.Row>

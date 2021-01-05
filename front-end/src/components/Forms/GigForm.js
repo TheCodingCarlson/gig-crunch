@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { STATES } from '../../constants';
@@ -94,7 +94,7 @@ const GigForm = ({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <p>Current Gig Id: {currentGigId}</p>
+      <Header as="h4" content="Add Gig" />
       <Form.Group>
         <Form.Input
           name="date"
