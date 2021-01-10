@@ -14,8 +14,11 @@ export const sortObjByKeys = (obj) => {
 
 export const getGigYear = (gig) => gig.date.substr(gig.date.length - 4, 4);
 
-export const getBandName = (bandCode, bands) =>
-  bands.find((band) => band.code === bandCode).name || '';
+export const getBandName = (bandCode, bands) => {
+  let band = _.find(bands, { code: bandCode });
+
+  return band ? band.name : '';
+};
 
 export const getTotalPay = (gigs) =>
   gigs.reduce((total, gig) => (total += gig.pay), 0);

@@ -1,34 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Grid, Tab, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class AppV2 extends React.Component {
-  componentDidMount() {
-    this.props.fetchGigs();
-    this.props.fetchBands();
-  }
+import Gigs from './Tabs/Gigs';
+import Bands from './Tabs/Bands';
 
-  renderList = () => {
-    return this.props.gigs.map((gig) => {
-      return <li key={gig.id}>{gig.venue}</li>;
-    });
-  };
+const panes = [
+  {
+    menuItem: 'Gigs',
+    render: () => <Gigs />,
+  },
+  {
+    menuItem: 'Bands',
+    render: () => <Bands />,
+  },
+];
 
-  render() {
-    return (
-      <div className="wrapper">
-        <h1>Gig Crunch</h1>
-        {/* <ul>{this.renderList()}</ul> */}
-      </div>
-    );
-  }
-}
+const AppV2 = ({ fetchGigs, fetchBands }) => {
+  useEffect(() => {
+    fetchGigs();
+    fetchBands();
+  }, [fetchGigs, fetchBands]);
 
-const mapStateToProps = (state) => {
-  return {
-    gigs: state.gigs,
-    bands: state.bands,
-  };
+  return (
+    <Grid container padded>
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h1" content="Gig Crunch" />
+        </Grid.Column>
+      </Grid.Row>
+      <Tab panes={panes} />
+    </Grid>
+  );
 };
 
 const mapActionToProps = {
@@ -36,4 +40,4 @@ const mapActionToProps = {
   fetchBands: actions.fetchBands,
 };
 
-export default connect(mapStateToProps, mapActionToProps)(AppV2);
+export default connect(null, mapActionToProps)(AppV2);
