@@ -46,6 +46,7 @@ const BandTable = ({ headers, groupedGigs, bands, openModal, closeModal }) => {
               </Table.Cell>
               <Table.Cell>
                 <Modal
+                  closeIcon
                   onOpen={() => handleOpenModal(id)}
                   onClose={() => closeModal()}
                   trigger={<Button content="See Gigs" />}

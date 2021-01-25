@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Tab } from 'semantic-ui-react';
+import { Grid, Tab, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import BandTable from '../Tables/BandTable';
@@ -18,6 +18,11 @@ const Bands = ({ gigs, bands }) => {
               groupedGigs={groupGigsByBand(gigs)}
               bands={bands}
             />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Button content="Edit Bands" />
           </Grid.Column>
         </Grid.Row>
       </Grid>

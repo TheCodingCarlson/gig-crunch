@@ -174,6 +174,7 @@ const GigForm = ({
           onChange={handleSelectChange}
         />
         <Modal
+          closeIcon
           onOpen={(e) => handleOpenModal(e)}
           onClose={() => closeModal()}
           trigger={

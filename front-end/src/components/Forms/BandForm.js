@@ -9,6 +9,7 @@ const initialFieldValues = {
 
 const BandForm = ({ createBand }) => {
   const [values, setValues] = useState(initialFieldValues);
+  const [isBandCreated, setIsBandCreated] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,26 +22,36 @@ const BandForm = ({ createBand }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     createBand(values, () => {
-      console.log('Band created!');
+      setIsBandCreated(true);
     });
-    setValues({ ...initialFieldValues });
   };
 
   return (
-    <Form>
-      <Header as="h4" content="Add Band" />
-      <Form.Group>
-        <Form.Input
-          name="name"
-          label="Band Name"
-          placeholder="Band Name"
-          value={values.name}
-          onChange={handleInputChange}
-        />
-      </Form.Group>
-      <Button onClick={handleSubmit}>Submit</Button>
-    </Form>
+    <div>
+      <Form style={{ display: isBandCreated ? 'none' : null }}>
+        <Header as="h4" content="Add Band" />
+        <Form.Group>
+          <Form.Input
+            name="name"
+            label="Band Name"
+            placeholder="Band Name"
+            value={values.name}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+        <Button onClick={handleSubmit} primary>
+          Submit
+        </Button>
+      </Form>
+      <Header
+        style={{ display: isBandCreated ? null : 'none' }}
+        as="h2"
+        color="green"
+        content={`Band: ${values.name} added!`}
+      />
+    </div>
   );
 };
 
