@@ -14,9 +14,8 @@ export const sortObjByKeys = (obj) => {
 
 export const getGigYear = (gig) => gig.date.substr(gig.date.length - 4, 4);
 
-export const getBandName = (bandCode, bands) => {
-  let band = _.find(bands, { code: bandCode });
-
+export const getBandName = (bandId, bands) => {
+  let band = _.find(bands, { id: bandId });
   return band ? band.name : '';
 };
 
@@ -26,7 +25,7 @@ export const getTotalPay = (gigs) =>
 export const filterGigs = (gigs, selectedYear) =>
   gigs.filter((gig) => getGigYear(gig) === selectedYear);
 
-export const groupGigsByBand = (gigs) => _.groupBy(gigs, 'bandCode');
+export const groupGigsByBand = (gigs) => _.groupBy(gigs, 'bandId');
 
 export const getTotalOfProp = (array, property) =>
   _.uniq(_.map(array, property));

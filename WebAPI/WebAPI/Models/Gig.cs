@@ -8,8 +8,11 @@ namespace WebAPI.Models
         [Key]
         public int Id { get; set; }
 
-        [Column(TypeName = "nvarchar(10)")]
-        public string Date { get; set; }
+        public int Day { get; set; }
+
+        public int Month { get; set; }
+
+        public int Year { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         public string Venue { get; set; }
@@ -20,9 +23,10 @@ namespace WebAPI.Models
         [Column(TypeName = "nvarchar(2)")]
         public string State { get; set; }
 
-        [Column(TypeName = "nvarchar(10)")]
-        public string BandCode { get; set; }
+        public int BandId { get; set; }
 
         public int Pay { get; set; }
+
+        public GigExpense[] Expenses { get; set; }
     }
 }

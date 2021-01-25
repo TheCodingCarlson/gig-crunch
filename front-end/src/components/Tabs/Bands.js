@@ -20,9 +20,6 @@ const Bands = ({ gigs, bands }) => {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>Band form</Grid.Column>
-        </Grid.Row>
       </Grid>
     </Tab.Pane>
   );

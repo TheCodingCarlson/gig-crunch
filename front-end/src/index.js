@@ -11,7 +11,7 @@ import AppV2 from './components/AppV2';
 import * as serviceWorker from './serviceWorker';
 
 import 'semantic-ui-css/semantic.min.css';
-// import './base.scss';
+import './semantic-ui-extensions.scss';
 
 const store = createStore(
   reducers,

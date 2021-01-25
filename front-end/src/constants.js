@@ -60,6 +60,110 @@ export const ACTION_TYPES = {
 
 export const TABS = ['Gig Breakdown', 'Band Breakdown'];
 
+export const MONTHS = [
+  {
+    text: 'January',
+    key: 'JR',
+    value: 1,
+  },
+  {
+    text: 'February',
+    key: 'FB',
+    value: 2,
+  },
+  {
+    text: 'March',
+    key: 'MR',
+    value: 3,
+  },
+  {
+    text: 'April',
+    key: 'AR',
+    value: 4,
+  },
+  {
+    text: 'May',
+    key: 'MY',
+    value: 5,
+  },
+  {
+    text: 'June',
+    key: 'JN',
+    value: 6,
+  },
+  {
+    text: 'July',
+    key: 'JL',
+    value: 7,
+  },
+  {
+    text: 'August',
+    key: 'AG',
+    value: 8,
+  },
+  {
+    text: 'September',
+    key: 'ST',
+    value: 9,
+  },
+  {
+    text: 'October',
+    key: 'OC',
+    value: 10,
+  },
+  {
+    text: 'November',
+    key: 'NV',
+    value: 11,
+  },
+  {
+    text: 'December',
+    key: 'DC',
+    value: 12,
+  },
+];
+
+const createDayOptions = (firstDay, lastDay) => {
+  const options = [];
+
+  for (let i = firstDay; i <= lastDay; i++) {
+    let option = {
+      text: i,
+      key: `day-${i}`,
+      value: i,
+    };
+
+    options.push(option);
+  }
+
+  return options;
+};
+
+export const DAYS = createDayOptions(1, 31);
+
+const createYearOptions = (startYear) => {
+  const currentYear = new Date().getFullYear(),
+    years = [];
+
+  startYear = startYear || 1980;
+
+  while (startYear <= currentYear) {
+    let year = {
+      text: startYear,
+      key: `year-${startYear}`,
+      value: startYear,
+    };
+
+    years.push(year);
+
+    startYear++;
+  }
+
+  return years;
+};
+
+export const YEARS = createYearOptions();
+
 export const STATES = [
   {
     text: 'ALABAMA',

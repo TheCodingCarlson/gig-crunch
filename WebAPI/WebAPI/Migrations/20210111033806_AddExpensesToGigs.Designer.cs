@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Models;
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(GigCrunchDbContext))]
-    partial class GigCrunchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210111033806_AddExpensesToGigs")]
+    partial class AddExpensesToGigs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,9 @@ namespace WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)");
@@ -41,16 +46,13 @@ namespace WebAPI.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("BandId")
-                        .HasColumnType("int");
+                    b.Property<string>("BandCode")
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("Day")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Month")
+                    b.Property<int?>("DateId")
                         .HasColumnType("int");
 
                     b.Property<int>("Pay")
@@ -62,12 +64,32 @@ namespace WebAPI.Migrations
                     b.Property<string>("Venue")
                         .HasColumnType("nvarchar(50)");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("DateId");
+
+                    b.ToTable("Gigs");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.GigDate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gigs");
+                    b.ToTable("GigDate");
                 });
 
             modelBuilder.Entity("WebAPI.Models.GigExpense", b =>
@@ -97,6 +119,15 @@ namespace WebAPI.Migrations
                     b.HasIndex("GigId");
 
                     b.ToTable("GigExpense");
+                });
+
+            modelBuilder.Entity("WebAPI.Models.Gig", b =>
+                {
+                    b.HasOne("WebAPI.Models.GigDate", "Date")
+                        .WithMany()
+                        .HasForeignKey("DateId");
+
+                    b.Navigation("Date");
                 });
 
             modelBuilder.Entity("WebAPI.Models.GigExpense", b =>

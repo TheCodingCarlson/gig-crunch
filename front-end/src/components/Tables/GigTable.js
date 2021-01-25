@@ -23,11 +23,11 @@ const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
 
       <Table.Body>
         {gigs.map((gig) => {
-          let bandName = getBandName(gig.bandCode, bands);
+          let bandName = getBandName(gig.bandId, bands);
 
           return (
             <Table.Row key={gig.id}>
-              <Table.Cell>{gig.date}</Table.Cell>
+              <Table.Cell>{`${gig.month}-${gig.day}-${gig.year}`}</Table.Cell>
               <Table.Cell>{bandName}</Table.Cell>
               <Table.Cell>{gig.venue}</Table.Cell>
               <Table.Cell>{gig.city}</Table.Cell>

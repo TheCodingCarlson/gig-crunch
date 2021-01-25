@@ -1,6 +1,6 @@
 # Gig Crunch
 
-** CURRENTLY UNDER CONSTRUCTION  **
+** CURRENTLY UNDER CONSTRUCTION **
 
 ## What does it do?
 
@@ -19,10 +19,9 @@ I will be using this readme as a journal/notetaker as I make progress.
 1. ~~Add all existing functionality that was in the vanilla JS version~~
 1. ~~Create Web API and CRUD routes using Entity Framework~~
 1. ~~Test React App and make sure data is still flowing through API to app~~
-1. Add Redux - create store and actions
-1. Add routing
-1. Create view to add gigs
-1. Create view to add bands
+1. ~~Add Redux - create store and actions~~
+1. ~~Create view to add gigs~~
+1. Create CRUD operations for bands - in progress
 
 ## Future TO DO
 
@@ -33,10 +32,13 @@ I will be using this readme as a journal/notetaker as I make progress.
 ## Contents
 
 ### JsonAPI
+
 Original basic API that loaded JSON files locally for the data source
 
 ### WebAPI
+
 Web API with CRUD operations for Gigs and Bands
 
 ### front-end
+
 React app that consumes the API and renders the data

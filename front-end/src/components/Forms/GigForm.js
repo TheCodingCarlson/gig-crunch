@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Header } from 'semantic-ui-react';
+import { Form, Button, Header, Grid, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { STATES } from '../../constants';
+import { STATES, MONTHS, DAYS, YEARS } from '../../constants';
+import BandForm from './BandForm';
 
 const initialFieldValues = {
-  date: '',
+  month: '',
+  day: '',
+  year: '',
   venue: '',
   city: '',
   state: '',
-  bandCode: '',
+  bandId: '',
   pay: '',
 };
 
@@ -20,7 +23,7 @@ const createBandOptions = (bands) => {
     let option = {
       key: band.id,
       text: band.name,
-      value: band.code,
+      value: band.id,
     };
 
     options.push(option);
@@ -34,8 +37,11 @@ const GigForm = ({
   bands,
   createGig,
   updateGig,
+  createBand,
   currentGigId,
   setCurrentGigId,
+  openModal,
+  closeModal,
 }) => {
   const bandOptions = createBandOptions(bands);
   const [values, setValues] = useState(initialFieldValues);
@@ -55,6 +61,11 @@ const GigForm = ({
       ...values,
       [name]: value,
     });
+  };
+
+  const handleOpenModal = (e) => {
+    e.preventDefault();
+    openModal();
   };
 
   const handleSelectChange = (e, data) => {
@@ -96,12 +107,29 @@ const GigForm = ({
     <Form onSubmit={handleSubmit}>
       <Header as="h4" content="Add Gig" />
       <Form.Group>
-        <Form.Input
-          name="date"
-          label="Date"
-          placeholder="Date"
-          value={values.date}
-          onChange={handleInputChange}
+        <Form.Select
+          name="month"
+          label="Month"
+          options={MONTHS}
+          placeholder="Month"
+          value={values.month}
+          onChange={handleSelectChange}
+        />
+        <Form.Select
+          name="day"
+          label="Day"
+          options={DAYS}
+          placeholder="Day"
+          value={values.day}
+          onChange={handleSelectChange}
+        />
+        <Form.Select
+          name="year"
+          label="Year"
+          options={YEARS}
+          placeholder="Year"
+          value={values.year}
+          onChange={handleSelectChange}
         />
         <Form.Input
           name="venue"
@@ -110,6 +138,8 @@ const GigForm = ({
           value={values.venue}
           onChange={handleInputChange}
         />
+      </Form.Group>
+      <Form.Group>
         <Form.Input
           name="city"
           label="City"
@@ -125,16 +155,6 @@ const GigForm = ({
           value={values.state}
           onChange={handleSelectChange}
         />
-      </Form.Group>
-      <Form.Group>
-        <Form.Select
-          name="bandCode"
-          label="Band"
-          options={bandOptions}
-          placeholder="Band"
-          value={values.bandCode}
-          onChange={handleSelectChange}
-        />
         <Form.Input
           name="pay"
           type="number"
@@ -144,8 +164,46 @@ const GigForm = ({
           onChange={handleInputChange}
         />
       </Form.Group>
-      <Button type="submit" primary content="Submit" />
-      <Button type="clear" secondary onClick={handleClear} content="Reset" />
+      <Form.Group>
+        <Form.Select
+          name="bandId"
+          options={bandOptions}
+          label="Band"
+          placeholder="Band"
+          value={values.bandId}
+          onChange={handleSelectChange}
+        />
+        <Modal
+          onOpen={(e) => handleOpenModal(e)}
+          onClose={() => closeModal()}
+          trigger={
+            <Form.Button
+              className="field--button-container"
+              color="teal"
+              content="Add Band"
+            />
+          }
+        >
+          <Modal.Content>
+            <BandForm />
+          </Modal.Content>
+        </Modal>
+      </Form.Group>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column>
+            <Button.Group>
+              <Button type="submit" primary content="Submit" />
+              <Button
+                type="clear"
+                secondary
+                onClick={handleClear}
+                content="Reset"
+              />
+            </Button.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Form>
   );
 };
@@ -153,6 +211,9 @@ const GigForm = ({
 const mapDispatchToProps = {
   createGig: actions.createGig,
   updateGig: actions.updateGig,
+  createBand: actions.createBand,
+  openModal: actions.openModal,
+  closeModal: actions.closeModal,
 };
 
 export default connect(null, mapDispatchToProps)(GigForm);
