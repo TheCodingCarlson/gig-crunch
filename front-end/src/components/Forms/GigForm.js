@@ -37,7 +37,6 @@ const GigForm = ({
   bands,
   createGig,
   updateGig,
-  createBand,
   currentGigId,
   setCurrentGigId,
   openModal,

@@ -81,13 +81,42 @@ export const fetchBands = () => (dispatch) => {
 };
 
 export const createBand = (data, onSuccess) => (dispatch) => {
-  console.log(data);
   bandsApi
     .create(data)
     .then((res) => {
       dispatch({
         type: ACTION_TYPES.CREATE_BAND,
         payload: res.data,
+      });
+      onSuccess();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const updateBand = (id, data, onSuccess) => (dispatch) => {
+  console.log(id, data);
+  bandsApi
+    .update(id, data)
+    .then((res) => {
+      dispatch({
+        type: ACTION_TYPES.UPDATE_BAND,
+        payload: {
+          id,
+          ...data,
+        },
+      });
+      onSuccess();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteBand = (id, onSuccess) => (dispatch) => {
+  bandsApi
+    .delete(id)
+    .then((res) => {
+      dispatch({
+        type: ACTION_TYPES.DELETE_BAND,
+        payload: id,
       });
       onSuccess();
     })

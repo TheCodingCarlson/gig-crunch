@@ -90,15 +90,9 @@ const BandTable = ({ headers, groupedGigs, bands, openModal, closeModal }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isModalOpen: state.isModalOpen,
-  };
-};
-
-const mapActionToProps = {
+const mapDispatchToProps = {
   openModal: actions.openModal,
   closeModal: actions.closeModal,
 };
 
-export default connect(mapStateToProps, mapActionToProps)(BandTable);
+export default connect(null, mapDispatchToProps)(BandTable);

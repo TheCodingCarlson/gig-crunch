@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -7,9 +7,18 @@ const initialFieldValues = {
   name: '',
 };
 
-const BandForm = ({ createBand }) => {
+const BandForm = ({ bands, createBand, updateBand, bandId }) => {
   const [values, setValues] = useState(initialFieldValues);
   const [isBandCreated, setIsBandCreated] = useState(false);
+  const [isBandUpdated, setIsBandUpdated] = useState(false);
+
+  useEffect(() => {
+    if (bandId) {
+      setValues({
+        ...bands.find((band) => band.id === bandId),
+      });
+    }
+  }, [bands, bandId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,14 +32,20 @@ const BandForm = ({ createBand }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createBand(values, () => {
-      setIsBandCreated(true);
-    });
+    if (bandId) {
+      updateBand(bandId, values, () => {
+        setIsBandUpdated(true);
+      });
+    } else {
+      createBand(values, () => {
+        setIsBandCreated(true);
+      });
+    }
   };
 
   return (
     <div>
-      <Form style={{ display: isBandCreated ? 'none' : null }}>
+      <Form style={{ display: isBandCreated || isBandUpdated ? 'none' : null }}>
         <Header as="h4" content="Add Band" />
         <Form.Group>
           <Form.Input
@@ -46,10 +61,10 @@ const BandForm = ({ createBand }) => {
         </Button>
       </Form>
       <Header
-        style={{ display: isBandCreated ? null : 'none' }}
+        style={{ display: isBandCreated || isBandUpdated ? null : 'none' }}
         as="h2"
         color="green"
-        content={`Band: ${values.name} added!`}
+        content={`Band: ${values.name} ${isBandCreated ? 'added' : 'updated'}!`}
       />
     </div>
   );
@@ -57,6 +72,7 @@ const BandForm = ({ createBand }) => {
 
 const mapDispatchToProps = {
   createBand: actions.createBand,
+  updateBand: actions.updateBand,
 };
 
 export default connect(null, mapDispatchToProps)(BandForm);

@@ -9,7 +9,6 @@ export const gigsReducer = (state = [], action) => {
       return [...state, action.payload];
 
     case ACTION_TYPES.UPDATE_GIG:
-      console.log(action.payload);
       const updatedGigs = state.map((gig) => {
         return gig.id === action.payload.id ? action.payload : gig;
       });

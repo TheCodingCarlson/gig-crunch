@@ -6,8 +6,21 @@ export const bandsReducer = (state = [], action) => {
       return action.payload;
 
     case ACTION_TYPES.CREATE_BAND:
-      console.log('band created', action.payload);
       return [...state, action.payload];
+
+    case ACTION_TYPES.UPDATE_BAND:
+      console.log('update band');
+      const updatedBands = state.map((band) => {
+        return band.id === action.payload.id ? action.payload : band;
+      });
+
+      return updatedBands;
+
+    case ACTION_TYPES.DELETE_BAND:
+      const updatedBandList = state.filter(
+        (band) => band.id !== action.payload
+      );
+      return updatedBandList;
 
     default:
       return state;
