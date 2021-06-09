@@ -15,7 +15,7 @@ const BandForm = ({ bands, createBand, updateBand, bandId }) => {
   useEffect(() => {
     if (bandId) {
       setValues({
-        ...bands.find((band) => band.id === bandId),
+        ...bands.find((band) => band._id === bandId),
       });
     }
   }, [bands, bandId]);

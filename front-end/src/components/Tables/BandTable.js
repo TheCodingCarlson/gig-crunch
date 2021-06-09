@@ -34,7 +34,7 @@ const BandTable = ({ headers, groupedGigs, bands, openModal, closeModal }) => {
       <Table.Body>
         {Object.keys(sortedBands).map((id) => {
           let totalPay = getTotalPay(sortedBands[id]);
-          let bandName = getBandName(parseInt(id), bands);
+          let bandName = getBandName(id, bands);
 
           return (
             <Table.Row key={id}>
@@ -68,7 +68,7 @@ const BandTable = ({ headers, groupedGigs, bands, openModal, closeModal }) => {
                       <Table.Body>
                         {selectedBandGigs.map((gig) => {
                           return (
-                            <Table.Row key={gig.id}>
+                            <Table.Row key={gig._id}>
                               <Table.Cell>{`${gig.month}-${gig.day}-${gig.year}`}</Table.Cell>
                               <Table.Cell>{gig.venue}</Table.Cell>
                               <Table.Cell>{gig.city}</Table.Cell>

@@ -6,7 +6,7 @@ import BandForm from '../Forms/BandForm';
 
 const AllBandTable = ({ bands, deleteBand, openModal, closeModal }) => {
   const handleDelete = (band) => {
-    deleteBand(band.id, () => {
+    deleteBand(band._id, () => {
       console.log('Deleted Band!');
     });
   };
@@ -16,7 +16,7 @@ const AllBandTable = ({ bands, deleteBand, openModal, closeModal }) => {
       <Table.Body>
         {bands.map((band) => {
           return (
-            <Table.Row key={band.id}>
+            <Table.Row key={band._id}>
               <Table.Cell>{band.name}</Table.Cell>
               <Table.Cell>
                 <Modal
@@ -33,7 +33,7 @@ const AllBandTable = ({ bands, deleteBand, openModal, closeModal }) => {
                   }
                 >
                   <Modal.Content>
-                    <BandForm bands={bands} bandId={band.id} />
+                    <BandForm bands={bands} bandId={band._id} />
                   </Modal.Content>
                 </Modal>
                 <Button

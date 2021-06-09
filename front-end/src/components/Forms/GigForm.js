@@ -21,9 +21,9 @@ const createBandOptions = (bands) => {
 
   bands.forEach((band) => {
     let option = {
-      key: band.id,
+      key: band._id,
       text: band.name,
-      value: band.id,
+      value: band._id,
     };
 
     options.push(option);
@@ -48,7 +48,7 @@ const GigForm = ({
   useEffect(() => {
     if (currentGigId !== 0) {
       setValues({
-        ...gigs.find((gig) => gig.id === currentGigId),
+        ...gigs.find((gig) => gig._id === currentGigId),
       });
     }
   }, [currentGigId, gigs]);
@@ -90,7 +90,7 @@ const GigForm = ({
       });
     } else {
       updateGig(currentGigId, values, () => {
-        console.log(`Updated Gig #${currentGigId}!`);
+        console.log(`Updated Gig ${currentGigId}!`);
       });
     }
 

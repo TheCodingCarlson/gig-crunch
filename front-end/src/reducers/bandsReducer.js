@@ -11,14 +11,14 @@ export const bandsReducer = (state = [], action) => {
     case ACTION_TYPES.UPDATE_BAND:
       console.log('update band');
       const updatedBands = state.map((band) => {
-        return band.id === action.payload.id ? action.payload : band;
+        return band._id === action.payload.id ? action.payload : band;
       });
 
       return updatedBands;
 
     case ACTION_TYPES.DELETE_BAND:
       const updatedBandList = state.filter(
-        (band) => band.id !== action.payload
+        (band) => band._id !== action.payload
       );
       return updatedBandList;
 

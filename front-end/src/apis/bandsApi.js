@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_ENDPOINT } from '../constants';
 
-const baseUrl = 'https://localhost:44327/api/bands';
+const baseUrl = `${API_ENDPOINT}/bands`;
 
 export const bandsApi = {
   fetchAll: () => axios.get(baseUrl),

@@ -6,7 +6,7 @@ import { getBandName } from '../../helpers';
 
 const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
   const handleDelete = (gig) => {
-    deleteGig(gig.id, () => {
+    deleteGig(gig._id, () => {
       console.log('Deleted Gig!');
     });
   };
@@ -26,7 +26,7 @@ const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
           let bandName = getBandName(gig.bandId, bands);
 
           return (
-            <Table.Row key={gig.id}>
+            <Table.Row key={gig._id}>
               <Table.Cell>{`${gig.month}-${gig.day}-${gig.year}`}</Table.Cell>
               <Table.Cell>{bandName}</Table.Cell>
               <Table.Cell>{gig.venue}</Table.Cell>
@@ -37,7 +37,7 @@ const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
                 <Button
                   color="olive"
                   onClick={() => {
-                    setCurrentGigId(gig.id);
+                    setCurrentGigId(gig._id);
                   }}
                   icon="edit"
                   content="Update gig"

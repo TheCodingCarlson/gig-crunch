@@ -10,13 +10,13 @@ export const gigsReducer = (state = [], action) => {
 
     case ACTION_TYPES.UPDATE_GIG:
       const updatedGigs = state.map((gig) => {
-        return gig.id === action.payload.id ? action.payload : gig;
+        return gig._id === action.payload.id ? action.payload : gig;
       });
 
       return updatedGigs;
 
     case ACTION_TYPES.DELETE_GIG:
-      const updatedGigList = state.filter((gig) => gig.id !== action.payload);
+      const updatedGigList = state.filter((gig) => gig._id !== action.payload);
       return updatedGigList;
 
     default:

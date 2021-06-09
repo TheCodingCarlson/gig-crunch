@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_ENDPOINT } from '../constants';
 
-const baseUrl = 'https://localhost:44327/api/gigs';
+const baseUrl = `${API_ENDPOINT}/gigs`;
 
 export const gigsApi = {
   fetchAll: () => axios.get(baseUrl),

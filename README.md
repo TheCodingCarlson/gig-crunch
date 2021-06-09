@@ -21,13 +21,14 @@ I will be using this readme as a journal/notetaker as I make progress.
 1. ~~Test React App and make sure data is still flowing through API to app~~
 1. ~~Add Redux - create store and actions~~
 1. ~~Create view to add gigs~~
-1. Create CRUD operations for bands - in progress
+1. ~~Create CRUD operations for bands~~
+1. Migrate project to Azure - in progress
 
 ## Future TO DO
 
 1. Add Auth/Sign In
-2. Add Users to DB
-3. Update UI and using something similar to Victory Charts
+2. Add Users
+3. Add Victory Charts to display data instead of tables
 
 ## Contents
 
