@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { reducers } from './reducers';
 
 // import App from './components/App';
-import AppV2 from './components/AppV2';
+import App from './components/App';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -23,7 +23,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppV2 />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

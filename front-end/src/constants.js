@@ -1,4 +1,4 @@
-export const API_ENDPOINT = 'https://gig-crunch-api.azurewebsites.net/api/';
+export const API_ENDPOINT = 'https://gig-crunch-api.azurewebsites.net/api';
 
 export const GIG_TABLE_HEADERS = [
   'Date',
