@@ -29,17 +29,3 @@ I will be using this readme as a journal/notetaker as I make progress.
 1. Add Auth/Sign In
 2. Add Users
 3. Add Victory Charts to display data instead of tables
-
-## Contents
-
-### JsonAPI
-
-Original basic API that loaded JSON files locally for the data source
-
-### WebAPI
-
-Web API with CRUD operations for Gigs and Bands
-
-### front-end
-
-React app that consumes the API and renders the data
