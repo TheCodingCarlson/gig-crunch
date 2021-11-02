@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Header, Grid, Modal, Select } from 'semantic-ui-react';
+import { Form, Button, Header, Grid, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { STATES, MONTHS, DAYS, YEARS } from '../../constants';
@@ -112,7 +112,6 @@ const GigForm = ({
           options={MONTHS}
           placeholder="Month"
           value={values.month}
-          required
           onChange={handleSelectChange}
         />
         <Form.Select
@@ -121,7 +120,6 @@ const GigForm = ({
           options={DAYS}
           placeholder="Day"
           value={values.day}
-          required
           onChange={handleSelectChange}
         />
         <Form.Select
@@ -130,7 +128,6 @@ const GigForm = ({
           options={YEARS}
           placeholder="Year"
           value={values.year}
-          required
           onChange={handleSelectChange}
         />
         <Form.Input
@@ -138,7 +135,6 @@ const GigForm = ({
           label="Venue"
           placeholder="Venue"
           value={values.venue}
-          required
           onChange={handleInputChange}
         />
       </Form.Group>
@@ -148,7 +144,6 @@ const GigForm = ({
           label="City"
           placeholder="City"
           value={values.city}
-          required
           onChange={handleInputChange}
         />
         <Form.Select
@@ -157,7 +152,6 @@ const GigForm = ({
           options={STATES}
           placeholder="State"
           value={values.state}
-          required
           onChange={handleSelectChange}
         />
         <Form.Input
@@ -166,7 +160,6 @@ const GigForm = ({
           label="Pay"
           placeholder="Pay"
           value={values.pay}
-          required
           onChange={handleInputChange}
         />
       </Form.Group>
@@ -177,7 +170,6 @@ const GigForm = ({
           label="Band"
           placeholder="Band"
           value={values.bandId}
-          required
           onChange={handleSelectChange}
         />
         <Modal
