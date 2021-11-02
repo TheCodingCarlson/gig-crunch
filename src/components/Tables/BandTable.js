@@ -34,7 +34,7 @@ const BandTable = ({ headers, groupedGigs, bands, openModal, closeModal }) => {
       <Table.Body>
         {Object.keys(sortedBands).map((id) => {
           let totalPay = getTotalPay(sortedBands[id]);
-          let bandName = getBandName(id, bands);
+          let bandName = getBandName(id, bands) ? getBandName(id, bands) : '❓';
 
           return (
             <Table.Row key={id}>

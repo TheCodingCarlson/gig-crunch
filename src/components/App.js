@@ -17,11 +17,20 @@ const panes = [
   },
 ];
 
+const getUserInfo = async () => {
+  const response = await fetch('/.auth/me');
+  const payload = await response.json();
+  const { clientPrincipal } = payload;
+  return clientPrincipal;
+}
+
 const AppV2 = ({ fetchGigs, fetchBands }) => {
   useEffect(() => {
     fetchGigs();
     fetchBands();
   }, [fetchGigs, fetchBands]);
+
+  console.log(getUserInfo());
 
   return (
     <Grid container padded>

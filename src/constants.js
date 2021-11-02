@@ -7,6 +7,7 @@ export const GIG_TABLE_HEADERS = [
   'City',
   'State',
   'Pay',
+  'Actions'
 ];
 
 export const BAND_TABLE_HEADERS = [
@@ -14,6 +15,7 @@ export const BAND_TABLE_HEADERS = [
   '# of Gigs',
   'Total Pay',
   'Average Pay Per Gig',
+  'Actions'
 ];
 
 export const BAND_GIGS_TABLE_HEADERS = [

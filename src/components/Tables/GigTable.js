@@ -28,7 +28,7 @@ const GigTable = ({ bands, gigs, headers, deleteGig, setCurrentGigId }) => {
           return (
             <Table.Row key={gig._id}>
               <Table.Cell>{`${gig.month}-${gig.day}-${gig.year}`}</Table.Cell>
-              <Table.Cell>{bandName}</Table.Cell>
+              <Table.Cell>{bandName ? bandName : '❓'}</Table.Cell>
               <Table.Cell>{gig.venue}</Table.Cell>
               <Table.Cell>{gig.city}</Table.Cell>
               <Table.Cell>{gig.state}</Table.Cell>

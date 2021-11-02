@@ -15,12 +15,15 @@ const Gigs = ({ gigs, bands }) => {
       <Grid>
         <Grid.Row>
           <Grid.Column>
-            <GigTable
-              headers={GIG_TABLE_HEADERS}
-              gigs={gigs}
-              bands={bands}
-              setCurrentGigId={setCurrentGigId}
-            />
+            {
+              gigs.length > 0 ?
+                <GigTable
+                headers={GIG_TABLE_HEADERS}
+                gigs={gigs}
+                bands={bands}
+                setCurrentGigId={setCurrentGigId}
+              /> : null
+            }
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

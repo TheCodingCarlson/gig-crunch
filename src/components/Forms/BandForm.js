@@ -53,6 +53,7 @@ const BandForm = ({ bands, createBand, updateBand, bandId }) => {
             label="Band Name"
             placeholder="Band Name"
             value={values.name}
+            required
             onChange={handleInputChange}
           />
         </Form.Group>

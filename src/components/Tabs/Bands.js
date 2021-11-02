@@ -14,11 +14,13 @@ const Bands = ({ gigs, bands }) => {
       <Grid>
         <Grid.Row>
           <Grid.Column>
-            <BandTable
-              headers={BAND_TABLE_HEADERS}
-              groupedGigs={groupGigsByBand(gigs)}
-              bands={bands}
-            />
+            { gigs.length > 0 ?
+              <BandTable
+                headers={BAND_TABLE_HEADERS}
+                groupedGigs={groupGigsByBand(gigs)}
+                bands={bands}
+              /> : null
+            }
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

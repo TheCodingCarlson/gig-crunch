@@ -20,6 +20,7 @@ export const bandsReducer = (state = [], action) => {
       const updatedBandList = state.filter(
         (band) => band._id !== action.payload
       );
+
       return updatedBandList;
 
     default:
